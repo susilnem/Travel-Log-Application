@@ -9,6 +9,7 @@ const LogSchema = new Schema(
     },
     title: {
       type: String,
+      unique: true,
       required: true,
       min: 3,
       max: 60,

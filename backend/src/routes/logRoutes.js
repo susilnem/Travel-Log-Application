@@ -29,6 +29,12 @@ router.post("/add", upload.single("image"), async (req, res) => {
 });
 
 //for log list
-router.get("/loglist", logController.getloglist);
+router.get("/", logController.getlogList);
+//get log detail
+router.get("/:id", logController.getlogByID);
+//update the log
+router.put("/update/:id", logController.updateLog);
+//delete the log
+router.delete("/delete/:id", logController.deleteLog);
 
 export default router;
