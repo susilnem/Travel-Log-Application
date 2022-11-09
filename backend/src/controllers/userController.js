@@ -69,7 +69,7 @@ export default class UserController{
                 res.json({ success: false, message: "Couldn't Delete the user" });
               }
         }else{
-            res.json({ success: false, message: textConstant.USER_ID_NOT_PROVIDED });
+            res.json({ success: false, message: textConstant.LOG_ID_NOT_PROVIDED });
         }
     }
 
@@ -86,7 +86,7 @@ export default class UserController{
               res.json({ success: false, message: "Couldn't update user" });
             }
           } else
-            res.json({ success: false, message: textConstant.USER_ID_NOT_PROVIDED });
+            res.json({ success: false, message: textConstant.LOG_ID_NOT_PROVIDED });
     }
 
 
