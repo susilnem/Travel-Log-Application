@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import mongoose from "mongoose";
+import userRoutes from './routes/userRoutes.js'
 import logRoutes from "./routes/logRoutes.js";
 
 const app = express();
@@ -15,6 +16,7 @@ app.get("/", (req, res) => {
   res.send("backend is working 👋");
 });
 
+app.use('/user',userRoutes);
 app.use("/log", logRoutes);
 
 app.listen(process.env.PORT || 8000, async () => {
