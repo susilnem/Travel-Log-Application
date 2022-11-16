@@ -1,5 +1,6 @@
 import User from '../models/userModel.js'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
 
 
 export default class UserController{
@@ -26,6 +27,28 @@ export default class UserController{
         }catch(err){
             res.json(err);
         }
+    }
+
+    //login user
+    async loginUser(req,res){
+        const {email,password} = req.body;
+        let existingUser;
+        try{
+            existingUser = await User.findOne({email:email});
+        }catch(err){
+            res.json(err)
+        }
+        if(!existingUser){
+            return res.status(400).json({message:"User not found. Signup please"})
+        }
+        const isPassCorrect = bcrypt.compareSync(password,existingUser.password);
+        if(!isPassCorrect){
+            return res.status(400).json({message:"Invalid Email/Password"})
+        }
+        const token = jwt.sign({id:existingUser._id},process.env.JWT_SECRET_KEY,{expiresIn:'1hr'})
+        return res
+            .status(200)
+            .json({message:"Successfully logged in!",user:existingUser,token})
     }
 
     //get all user details
