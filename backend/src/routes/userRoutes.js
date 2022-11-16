@@ -9,9 +9,7 @@ router.post('/signup',userController.addUser);
 router.post('/login',userController.loginUser);
 router.get('/',validateToken,userController.getAllUsers);
 router.get('/:id',validateToken,userController.getSingleUser);
-router.put('/:id',validateToken,userController.updateUser);
-router.delete('/:id',validateToken,userController.deleteUser);
-
-// router.post('/login',user.login);
+router.put('/update/:id',validateToken,userController.updateUser);
+router.delete('/delete/:id',validateToken,userController.deleteUser);
 
 export default router;
